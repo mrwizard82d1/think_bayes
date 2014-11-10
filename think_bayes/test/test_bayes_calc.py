@@ -4,6 +4,7 @@
 __author__ = 'l.jones'
 
 
+import fractions
 import unittest
 
 import think_bayes.bayes_calc
@@ -50,3 +51,17 @@ class BayesCalcTest(unittest.TestCase):
         cut = think_bayes.bayes_calc.BayesCalc(hypotheses)
 
         self.assertEqual(hypotheses, cut.hypotheses)
+
+    def test_posterior_fair_coin_single_tails(self):
+        """Verify the posterior probability of a fair coin after a single flip of tails."""
+
+        hypotheses = ['fair coin']
+        cut = think_bayes.bayes_calc.BayesCalc(hypotheses)
+        cut.priors['fair coin'] = fractions.Fraction(1, 2)
+        cut.likelihoods[('h', 'fair coin')] = fractions.Fraction(1, 2)
+        cut.likelihoods[('h', 'not fair coin')] = fractions.Fraction(3, 40)
+        cut.update()
+
+        self.assertEquals(fractions.Fraction(20, 23), cut.posteriors[('fair coin', 'h')])
+        self.assertEquals(fractions.Fraction(3, 23), cut.posteriors[('not fair coin', 'h')])
+
