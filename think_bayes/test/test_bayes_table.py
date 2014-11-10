@@ -7,10 +7,10 @@ __author__ = 'l.jones'
 import fractions
 import unittest
 
-import think_bayes.bayes_calc
+import think_bayes.bayes_table
 
 
-class BayesCalcTest(unittest.TestCase):
+class BayesTableTest(unittest.TestCase):
     """Defines the unit tests for the BayesCalc class."""
 
 
@@ -19,14 +19,14 @@ class BayesCalcTest(unittest.TestCase):
 
         hypothesis = 'advertebas'
 
-        cut = think_bayes.bayes_calc.BayesCalc([hypothesis])
+        cut = think_bayes.bayes_table.BayesTable([hypothesis])
 
         self.assertIn(hypothesis, cut.hypotheses)
 
     def test_ctor_one_hypo_has_two_hypos(self):
         """Verify that constructing an instance with one hypothesis has two hypotheses."""
 
-        cut = think_bayes.bayes_calc.BayesCalc([''])
+        cut = think_bayes.bayes_table.BayesTable([''])
 
         self.assertEqual(2, len(cut.hypotheses))
 
@@ -34,21 +34,21 @@ class BayesCalcTest(unittest.TestCase):
         """Verify that constructing an instance with one hypothesis adds not hypothesis."""
 
         hypothesis = 'pomi'
-        cut = think_bayes.bayes_calc.BayesCalc([hypothesis])
+        cut = think_bayes.bayes_table.BayesTable([hypothesis])
 
         self.assertIn('not %s' % hypothesis, cut.hypotheses)
 
     def test_ctor_no_hypo_raises_error(self):
         "Verify that constructing an instance with no hypotheses raises an error."
 
-        self.assertRaises(ValueError, think_bayes.bayes_calc.BayesCalc, [])
+        self.assertRaises(ValueError, think_bayes.bayes_table.BayesTable, [])
 
     def test_ctor_two_hypos_has_hypos(self):
         """Verify that constructing an instance with two hypotheses has two hypotheses."""
 
         hypotheses = ['officiem', 'lapidarie']
 
-        cut = think_bayes.bayes_calc.BayesCalc(hypotheses)
+        cut = think_bayes.bayes_table.BayesTable(hypotheses)
 
         self.assertEqual(hypotheses, cut.hypotheses)
 
@@ -56,7 +56,7 @@ class BayesCalcTest(unittest.TestCase):
         """Verify the posterior probability of a fair coin after a single flip of tails."""
 
         hypotheses = ['fair coin']
-        cut = think_bayes.bayes_calc.BayesCalc(hypotheses)
+        cut = think_bayes.bayes_table.BayesTable(hypotheses)
         cut.priors['fair coin'] = fractions.Fraction(1, 2)
         cut.likelihoods[('h', 'fair coin')] = fractions.Fraction(1, 2)
         cut.likelihoods[('h', 'not fair coin')] = fractions.Fraction(3, 40)

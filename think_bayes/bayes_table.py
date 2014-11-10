@@ -4,7 +4,7 @@
 __author__ = 'l.jones'
 
 
-class BayesCalc():
+class BayesTable():
     """Models a Bayes probability calculator."""
 
     def __init__(self, hypotheses):
