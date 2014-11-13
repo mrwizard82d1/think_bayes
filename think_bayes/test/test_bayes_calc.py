@@ -43,6 +43,5 @@ class TestBayesCalc(unittest.TestCase):
         total = 0.5 * 0.13 * 0.13 + 0.5 * 0.20 * 0.13
 
         actual_posterior = bayes_calc.posterior(prior, likelihood, total)
-        print(actual_posterior)
 
         self.assertAlmostEqual(0.39, actual_posterior, places=2)
