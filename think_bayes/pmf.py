@@ -16,6 +16,10 @@ class Pmf(object):
         """Returns the probability mass of item."""
         return self._repr[item]
 
+    def __len__(self):
+        """Return the number if items in this instance."""
+        return len(self._repr)
+
     def __iter__(self):
         """Returns an iterator over the values of this instance."""
         return iter(self._repr)

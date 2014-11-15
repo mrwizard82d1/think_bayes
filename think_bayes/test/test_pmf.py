@@ -28,8 +28,8 @@ class TestPmf(unittest.TestCase):
 
         self.assertRaises(KeyError, cut.__getitem__, None)
 
-    def test_increase_no_values_one_set_to_increase(self):
-        """Verify increasing the mass with no values increases the probability mass of value."""
+    def test_increase_no_such_values_new_value_increase(self):
+        """Verify increasing the mass of a new value increases the probability mass of that value."""
 
         cut = Pmf()
 
@@ -39,8 +39,8 @@ class TestPmf(unittest.TestCase):
 
         self.assertEqual(expect_mass, cut[value])
 
-    def test_increase_one_value_one_increased(self):
-        """Verify increasing the mass with one value increases its probability mass."""
+    def test_increase_existing_value_existing_increased(self):
+        """Verify increasing the mass of an existing value increases its probability mass."""
 
         cut = Pmf()
 
@@ -51,6 +51,20 @@ class TestPmf(unittest.TestCase):
         cut.increase(expect_value, 72)
 
         self.assertEqual(start_mass + 72, cut[expect_value])
+
+    def test_increment_corpus_corpus_created(self):
+        """Verify incrementing the frequency of words in a corpus."""
+
+        corpus = 'The quick little brown fox jumped over the lazy grey lambs.'
+        cut = Pmf()
+        for word in corpus.split():
+            cut.increase(word.lower().rstrip('.'), 1)
+
+        expected_corpus_map = {'the' : 2, 'quick': 1, 'little': 1, 'brown': 1, 'fox': 1, 'jumped': 1, 'over': 1,
+                               'lazy': 1, 'grey': 1, 'lambs': 1}
+        self.assertEqual(len(expected_corpus_map), len(cut))
+        for word in expected_corpus_map:
+            self.assertEqual(expected_corpus_map[word], cut[word])
 
     def test_normalize_one_value_probability_is_one(self):
         """Verify that normalizing a Pmf with a single value makes probability one."""
