@@ -22,10 +22,8 @@ class MontyPmfBase(object):
 
     @abstractmethod
     def likelihood(self, data, hypothesis):
-        """
-        Returns the likelihood of data given hypothesis.
-        """
-        pass
+        """Returns the likelihood of data given hypothesis."""
+        raise NotImplementedError
 
     def update(self, data):
         """Update this instance having seen data."""
@@ -54,20 +52,55 @@ class MontyPmfRandom(MontyPmfBase):
         return 1
 
 
+class MontyPmfAlwaysB(MontyPmfBase):
+    """A class for solving the 'Monty Hall' problems assuming Monty always picks door 'B' if he can."""
+
+    def likelihood(self, data, hypothesis):
+        """Returns the likelihood of data given hypothesis."""
+
+        if hypothesis == data:
+            # Monty Hall NEVER shows the door selected by the contestant.
+            return 0
+
+        if data == 'B':
+            # Monty Hall always tries to pick door 'B'.
+            return 1
+
+        # Otherwise, Monty Hall shows the other door.
+        return 1
+
 class TestMontyPmf(unittest.TestCase):
     """Defines the unit tests for the MontyPmf class."""
 
     def test_monty_picks_random(self):
         """Verify the posterior probabilities if Monty Hall picks randomly between doors that DO NOT have car."""
         # The car is behind door A, B or C.
-        hypos = 'ABC'
-        cut = MontyPmfRandom(hypos)
+        hypotheses = 'ABC'
+        cut = MontyPmfRandom(hypotheses)
 
         # Monty shows door B (after you pick A)
         data = 'B'
         cut.update(data)
 
-        expected_posterior = {'A': fractions.Fraction(1, 3), 'B': fractions.Fraction(0), 'C': fractions.Fraction(2, 3)}
+        expect_posterior = {'A': fractions.Fraction(1, 3), 'B': fractions.Fraction(0), 'C': fractions.Fraction(2, 3)}
 
-        self.assertEqual(expected_posterior, dict(cut._pmf.items()))
+        actual_posterior = dict(cut._pmf.items())
+
+        self.assertEqual(expect_posterior, actual_posterior)
+
+    def test_monty_picks_b(self):
+        """Verify the posterior probabilities if Monty always picks door B if he can."""
+
+        hypotheses = 'ABC'
+        cut = MontyPmfAlwaysB(hypotheses)
+
+        # Monty shows door B after you pick A.
+        data = 'B'
+        cut.update(data)
+
+        expect_posterior = {'A': 0.5, 'B': 0, 'C': 0.5}
+
+        actual_posterior = dict(cut._pmf.items())
+
+        self.assertEqual(expect_posterior, actual_posterior)
 
