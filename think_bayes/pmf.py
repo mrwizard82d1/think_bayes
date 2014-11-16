@@ -28,7 +28,11 @@ class Pmf(object):
         """Sets the probability mass of key to value."""
         self._repr[key] = value
 
-    def increase(self, value, amount):
+    def items(self):
+        """Returns the items in this Pmf."""
+        return self._repr.items()
+
+    def increment(self, value, amount):
         """Increase the probability mass of value by amount."""
         self._repr[value] = self._repr.get(value, 0) + amount
 
@@ -46,4 +50,9 @@ class Pmf(object):
             factor = 1 / weight
         for value in self._repr:
             self.multiply(value, factor)
+
+    def values(self):
+        """Return all the values in this instance."""
+
+        return self._repr.keys()
 

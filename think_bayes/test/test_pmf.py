@@ -35,7 +35,7 @@ class TestPmf(unittest.TestCase):
 
         expect_mass = fractions.Fraction(28, 42)
         value = 'fastidiosorum'
-        cut.increase(value, expect_mass)
+        cut.increment(value, expect_mass)
 
         self.assertEqual(expect_mass, cut[value])
 
@@ -48,23 +48,45 @@ class TestPmf(unittest.TestCase):
         expect_value = 'aeternales'
         cut[expect_value] = start_mass
 
-        cut.increase(expect_value, 72)
+        cut.increment(expect_value, 72)
 
         self.assertEqual(start_mass + 72, cut[expect_value])
 
-    def test_increment_corpus_corpus_created(self):
+    def test_increase_corpus_corpus_created(self):
         """Verify incrementing the frequency of words in a corpus."""
 
         corpus = 'The quick little brown fox jumped over the lazy grey lambs.'
         cut = Pmf()
         for word in corpus.split():
-            cut.increase(word.lower().rstrip('.'), 1)
+            cut.increment(word.lower().rstrip('.'), 1)
 
         expected_corpus_map = {'the' : 2, 'quick': 1, 'little': 1, 'brown': 1, 'fox': 1, 'jumped': 1, 'over': 1,
                                'lazy': 1, 'grey': 1, 'lambs': 1}
         self.assertEqual(len(expected_corpus_map), len(cut))
         for word in expected_corpus_map:
             self.assertEqual(expected_corpus_map[word], cut[word])
+
+    def test_many_items_get_many_items(self):
+        """Verify getting many items from a Pmf instance."""
+
+        cut = self.create_many_value_pmf(self.many_int_values_mass_map)
+
+        actual_items = cut.items()
+
+        self.assertEquals(self.many_int_values_mass_map.items(), cut.items())
+
+    def test_multiply_mass_mass_multiplied(self):
+        """Verify that multiplying an existing mass actually multiplies that mass."""
+
+        cut = Pmf()
+        cut['Bowl 1'] = fractions.Fraction(1, 2)
+        cut['Bowl 2'] = fractions.Fraction(1, 2)
+
+        cut.multiply('Bowl 1', fractions.Fraction(3, 4))
+        self.assertEqual(fractions.Fraction(3, 8), cut['Bowl 1'])
+
+        cut.multiply('Bowl 2', 0.5)
+        self.assertEqual(0.25, cut['Bowl 2'])
 
     def test_normalize_one_value_probability_is_one(self):
         """Verify that normalizing a Pmf with a single value makes probability one."""
@@ -124,6 +146,12 @@ class TestPmf(unittest.TestCase):
 
         for value in self.many_int_values_mass_map:
             self.assertEqual(self.many_int_values_mass_map[value], cut[value])
+
+    def test_many_values_get_many_values(self):
+        """Verify querying values in a Pmf instance."""
+
+        cut = self.create_many_value_pmf(self.many_int_values_mass_map)
+        self.assertEqual(self.many_int_values_mass_map.keys(), cut.values())
 
     def create_many_value_pmf(self, actual_value_mass_map):
         cut = Pmf()
