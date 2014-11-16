@@ -28,6 +28,18 @@ class Pmf(object):
         """Sets the probability mass of key to value."""
         self._repr[key] = value
 
+    def add_all(self, values):
+        """Adds all values to this instance with the same weight and allowing duplicates."""
+
+        for value in values:
+            self.increment(value, 1)
+
+    def add_uniform(self, values):
+        """Adds all values to this instance giving each a mass of 1."""
+
+        for value in values:
+            self[value] = 1
+
     def items(self):
         """Returns the items in this Pmf."""
         return self._repr.items()

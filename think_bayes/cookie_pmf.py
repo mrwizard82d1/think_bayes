@@ -29,6 +29,7 @@ class CookiePmf(object):
 
     def update(self, data):
         """Update this instance having seen data."""
+
         for hypothesis in self._pmf.values():
             likelihood_of_data = self.likelihood(data, hypothesis)
             self._pmf.multiply(hypothesis, likelihood_of_data)
