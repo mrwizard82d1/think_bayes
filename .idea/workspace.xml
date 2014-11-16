@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="445a56a4-39d4-44ce-ab77-e6dd22ce7c5f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/think_bayes/test/test_monty_pmf.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/think_bayes/cookie_pmf.py" afterPath="$PROJECT_DIR$/think_bayes/cookie_pmf.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/think_bayes/pmf.py" afterPath="$PROJECT_DIR$/think_bayes/pmf.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/think_bayes/test/test_pmf.py" afterPath="$PROJECT_DIR$/think_bayes/test/test_pmf.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/think_bayes/test/test_monty_pmf.py" afterPath="$PROJECT_DIR$/think_bayes/test/test_monty_pmf.py" />
     </list>
     <ignored path="think_bayes.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -18,7 +14,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/think_bayes$Unittests_in_test.coverage" NAME="Unittests in test Coverage Results" MODIFIED="1416108687416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/think_bayes/test" />
+    <SUITE FILE_PATH="coverage/think_bayes$Unittests_in_test.coverage" NAME="Unittests in test Coverage Results" MODIFIED="1416109064782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/think_bayes/test" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -35,11 +31,9 @@
       <file leaf-file-name="test_monty_pmf.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/think_bayes/test/test_monty_pmf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8210526" vertical-offset="552" max-vertical-offset="1122">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-              <folding>
-                <element signature="e#53#69#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.08947369" vertical-offset="0" max-vertical-offset="1343">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -777,11 +771,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/think_bayes/test/test_monty_pmf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8210526" vertical-offset="552" max-vertical-offset="1122">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding>
-            <element signature="e#53#69#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.08947369" vertical-offset="0" max-vertical-offset="1343">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
