@@ -33,3 +33,11 @@ class Pmf(object):
         """Scale the probability mass of `value` by `scale`."""
         self.map[value] *= scale
 
+    def values(self):
+        """Iterate over the values in this instance."""
+        return self.map.iterkeys()
+
+    def items(self):
+        """Iterate over the value, mass pairs of this instance."""
+        return self.map.iteritems()
+
