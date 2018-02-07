@@ -29,3 +29,7 @@ class Pmf(object):
         normalized_map = {v: fractions.Fraction(m) / constant for v, m in self.map.iteritems()}
         self.map = normalized_map
 
+    def multiply(self, value, scale):
+        """Scale the probability mass of `value` by `scale`."""
+        self.map[value] *= scale
+
