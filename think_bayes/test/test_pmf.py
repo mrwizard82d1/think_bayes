@@ -64,6 +64,5 @@ class TestPmf(unittest.TestCase):
         self.assertEqual(fractions.Fraction(13, 278), sut.probability('that'))
 
 
-
 if __name__ == '__main__':
     unittest.main()
