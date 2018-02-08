@@ -17,3 +17,9 @@ class Monty2(thinkbayes.Suite):
             return fractions.Fraction(1, 2)
 
         return 1
+
+
+if __name__ == '__main__':
+    suite = Monty2('ABC')
+    suite.update('B')
+    suite.print_distribution()
