@@ -1,0 +1,1 @@
+from think_bayes.cookie_function import cookie_function
