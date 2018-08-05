@@ -7,3 +7,6 @@ from think_bayes.monty_hall_always_b_table import MontyHallAlwaysBTable
 from think_bayes.pmf import Pmf
 from think_bayes.cookie import Cookie
 from think_bayes.monty_pmf import MontyPmf
+
+from think_bayes.suite import Suite
+from think_bayes.monty import Monty
