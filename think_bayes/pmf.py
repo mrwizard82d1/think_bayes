@@ -14,6 +14,10 @@ class Pmf:
         """Return the probability mass for `value`."""
         return self.mass[value]
 
+    def values(self):
+        """Returns the values for which I have 'mass.'"""
+        return self.mass.keys()
+
     def increment(self, value):
         """Increment the mass of value in my mass."""
         self.mass[value] = (self.mass.get(value, 0) + 1)

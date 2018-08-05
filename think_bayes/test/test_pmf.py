@@ -72,3 +72,9 @@ class TestPmf(unittest.TestCase):
         self.assertEqual(cut.probability('pernicitas'), fractions.Fraction(1, 5))
         self.assertEqual(cut.probability('specit'), fractions.Fraction(1, 5))
         self.assertEqual(cut.probability('medii'), fractions.Fraction(3, 5))
+
+    def test_values(self):
+        cut = think_bayes.Pmf()
+        cut.set(['pernicitas', 'specit', 'medii'], 984)
+
+        self.assertEqual({'pernicitas', 'specit', 'medii'}, cut.values())
