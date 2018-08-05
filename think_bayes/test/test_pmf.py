@@ -60,3 +60,15 @@ class TestPmf(unittest.TestCase):
         expected = dict(expected_counts)
         for value in expected.keys():
             self.assertEqual(cut.probability(value), expected[value])
+
+    def test_multiply(self):
+        cut = think_bayes.Pmf()
+        cut.set(['pernicitas', 'specit', 'medii'], 984)
+        cut.normalize()
+
+        cut.multiply('medii', 3)
+        cut.normalize()
+
+        self.assertEqual(cut.probability('pernicitas'), fractions.Fraction(1, 5))
+        self.assertEqual(cut.probability('specit'), fractions.Fraction(1, 5))
+        self.assertEqual(cut.probability('medii'), fractions.Fraction(3, 5))
