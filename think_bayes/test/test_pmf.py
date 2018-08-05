@@ -32,3 +32,14 @@ class TestPmf(unittest.TestCase):
         self.assertEqual(cut.probability('pernicitas'), 984)
         self.assertEqual(cut.probability('specit'), 984)
         self.assertEqual(cut.probability('medii'), 984)
+
+    def test_increment(self):
+        cut = think_bayes.Pmf()
+        text = """
+        Four score and seven years ago, our fathers brought forth on this continent, a new nation, 
+        conceived in Liberty and dedicated to the proposition that all men are created equal.
+        """
+        for c in text:
+            cut.increment(c)
+
+        self.assertEqual(cut.probability('o'), 14)
