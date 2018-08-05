@@ -28,4 +28,3 @@ class TestMontyHallTable(unittest.TestCase):
         cut.open_door_and_no_car('B')
 
         self.assertEqual(fractions.Fraction(1, 2), cut.posterior('A'))
-
