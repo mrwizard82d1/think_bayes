@@ -16,3 +16,16 @@ class TestMontyHallTable(unittest.TestCase):
         cut.open_door_and_no_car('B')
 
         self.assertEqual(fractions.Fraction(1, 3), cut.posterior('A'))
+
+    def test_always_b_change(self):
+        cut = think_bayes.MontyHallAlwaysBTable()
+        cut.open_door_and_no_car('B')
+
+        self.assertEqual(fractions.Fraction(1, 2), cut.posterior('C'))
+
+    def test_always_b_stay(self):
+        cut = think_bayes.MontyHallAlwaysBTable()
+        cut.open_door_and_no_car('B')
+
+        self.assertEqual(fractions.Fraction(1, 2), cut.posterior('A'))
+
