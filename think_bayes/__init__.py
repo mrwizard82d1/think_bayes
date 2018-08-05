@@ -11,3 +11,4 @@ from think_bayes.monty_pmf import MontyPmf
 from think_bayes.suite import Suite
 from think_bayes.monty import Monty
 from think_bayes.m_and_m import MAndM
+from think_bayes.cookie_eating import CookieEating
