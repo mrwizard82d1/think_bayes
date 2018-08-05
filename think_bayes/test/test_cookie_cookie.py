@@ -7,7 +7,7 @@ import fractions
 import think_bayes
 
 
-class TestCookie(unittest.TestCase):
+class TestCookieCookie(unittest.TestCase):
     def test_bowl_vanilla(self):
         """Test the posteriors after drawing a vanilla cookie."""
         cut = think_bayes.Cookie(['Bowl 1', 'Bowl 2'])
@@ -23,3 +23,12 @@ class TestCookie(unittest.TestCase):
 
         self.assertEqual(cut.probability('Bowl 1'), fractions.Fraction(1, 3))
         self.assertEqual(cut.probability('Bowl 2'), fractions.Fraction(2, 3))
+
+    def test_bowl_many(self):
+        """Test the posteriors after drawing vanilla, chocolate, vanilla."""
+        cut = think_bayes.Cookie(['Bowl 1', 'Bowl 2'])
+        for cookie in ['Vanilla', 'Chocolate', 'Vanilla']:
+            cut.update(cookie)
+
+        self.assertEqual(cut.probability('Bowl 1'), fractions.Fraction(9, 17))
+        self.assertEqual(cut.probability('Bowl 2'), fractions.Fraction(8, 17))

@@ -21,6 +21,14 @@ class Cookie(think_bayes.Pmf):
                       'Bowl 2': {'Vanilla': fractions.Fraction(20, 40),
                                  'Chocolate': fractions.Fraction(20, 40)}}
 
+    def update(self, data):
+        """Update the probability mass after seeing `data`."""
+        for hypothesis in self.mass.keys():
+            likelihood = self.likelihood(data, hypothesis)
+            self.multiply(hypothesis, likelihood)
+
+        self.normalize()
+
     def likelihood(self, data, hypothesis):
         """Calculate the likelihood of `data `if `hypothesis` is true."""
 
