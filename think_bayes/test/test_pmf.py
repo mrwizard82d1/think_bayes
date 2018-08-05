@@ -1,6 +1,7 @@
 """Test the probability mass function class (Pmf)."""
 
 
+import fractions
 import unittest
 
 import think_bayes
@@ -43,3 +44,19 @@ class TestPmf(unittest.TestCase):
             cut.increment(c)
 
         self.assertEqual(cut.probability('o'), 14)
+
+    def test_normalize(self):
+        cut = think_bayes.Pmf()
+        chars = 'regimen octavum mordet'
+        for c in chars:
+            cut.increment(c)
+        cut.normalize()
+
+        raw_expected_counts = [('r', 2), ('e', 3), ('g', 1), ('i', 1),
+                               ('m',  3), ('o', 2), ('c', 1), ('t', 2),
+                               ('a', 1), ('v', 1), ('u', 1), ('d', 1)]
+        expected_counts = [(pr[0], fractions.Fraction(pr[1], len(chars))) for pr in raw_expected_counts]
+
+        expected = dict(expected_counts)
+        for value in expected.keys():
+            self.assertEqual(cut.probability(value), expected[value])
