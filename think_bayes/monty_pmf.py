@@ -1,4 +1,4 @@
-"""Solve the Monty Hall problem using the Monty class.
+"""Solve the Monty Hall problem using the MontyPmf class.
 
 This implementation assumes that Monty Hall picks randomly between doors 'B' and
 'C' whichever **does not** have the car.
@@ -10,7 +10,7 @@ import fractions
 import think_bayes
 
 
-class Monty(think_bayes.Pmf):
+class MontyPmf(think_bayes.Pmf):
     """Customize the Pmf class to solve the Monty Hall problem."""
 
     def __init__(self, hypotheses):

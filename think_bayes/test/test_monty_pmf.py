@@ -1,4 +1,4 @@
-"""Test the Monty class for solving the Monty Hall problem."""
+"""Test the Monty(Pmf) class for solving the Monty Hall problem."""
 
 
 import fractions
@@ -9,7 +9,7 @@ import think_bayes
 
 class TestMontyHallMonty(unittest.TestCase):
     def test_monty_hall_random_pick_monty(self):
-        cut = think_bayes.Monty('ABC')
+        cut = think_bayes.MontyPmf('ABC')
 
         cut.update('B')
 
