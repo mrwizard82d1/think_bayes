@@ -27,7 +27,8 @@ class TestCookieEating(unittest.TestCase):
     # def test_vanilla_vanilla(self):
     #     cut = think_bayes.CookieEating()
     #
-    #     cut.update('vanilla')
-    #     cut.update('vanilla')
+    #     cut.update('Vanilla')
+    #     cut.update('Vanilla')
     #
-    #     self.assertEqual(cut.probability('Bowl 1'), fractions.Fraction())
+    #     self.assertEqual(cut.probability('Bowl 1'), fractions.Fraction(3, 5))
+    #     self.assertEqual(cut.probability('Bowl 2'), fractions.Fraction(2, 5))
