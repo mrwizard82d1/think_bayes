@@ -17,7 +17,6 @@ class MontyPmf(think_bayes.Pmf):
         think_bayes.Pmf.__init__(self)
         self.set(list(hypotheses), 1)
         self.normalize()
-        print('mass function', self.mass)
 
     def update(self, data):
         """Update my probabilities having observed `data`."""

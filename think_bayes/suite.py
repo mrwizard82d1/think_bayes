@@ -1,5 +1,3 @@
-
-
 import think_bayes
 
 
