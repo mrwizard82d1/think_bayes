@@ -1,3 +1,5 @@
+import fractions
+
 import think_bayes
 
 
@@ -18,12 +20,14 @@ class CookieEating(think_bayes.Suite):
         """Calculate the likelihood of `data `if `hypothesis` is true."""
 
         mixture_for_hypothesis = self.mixes[hypothesis]
-        result = mixture_for_hypothesis.__dict__[data.lower()]
+        numerator = mixture_for_hypothesis.__dict__[data.lower()]
+        result = fractions.Fraction(numerator, (mixture_for_hypothesis.vanilla + mixture_for_hypothesis.chocolate))
 
         return result
 
     def update(self, data):
         """Update my probability mass on seeing `data`."""
+
         cookie, bowl = data
         for hypothesis in self.values():
             likelihood = self.likelihood(cookie, hypothesis)
@@ -54,3 +58,6 @@ class Bowl:
     def __init__(self, vanilla, chocolate):
         self.vanilla = vanilla
         self.chocolate = chocolate
+
+    def __repr__(self):
+        return 'Bowl(vanilla={}, chocolate={})'.format(self.vanilla, self.chocolate)
