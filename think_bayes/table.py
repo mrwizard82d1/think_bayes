@@ -6,6 +6,9 @@ class Table:
             self.prior = prior
             self.likelihood = likelihood
 
+        def __repr__(self):
+            return 'Table.Row(prior={0}, likelihood={1}'.format(self.prior, self.likelihood)
+
     def __init__(self, table):
         self._data = table
 
