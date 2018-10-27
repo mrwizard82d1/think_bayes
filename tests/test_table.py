@@ -7,7 +7,7 @@ import unittest
 import think_bayes
 
 
-class TestBayesTable(unittest.TestCase):
+class TestMAndMTable(unittest.TestCase):
     table_data = {'a': think_bayes.Table.Row(fractions.Fraction(1, 2), 20 * 20),
                   'b': think_bayes.Table.Row(fractions.Fraction(1, 2), 10 * 14)}
 
