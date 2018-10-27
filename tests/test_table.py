@@ -24,7 +24,7 @@ class TestMAndMTable(unittest.TestCase):
         self.assertEqual(fractions.Fraction(7, 27), sut.posterior('b'))
 
 
-class TestMontyHallTable(unittest.TestCase):
+class TestMontyHallTableRandomChooseAvailable(unittest.TestCase):
     # The hypotheses, 'a', 'b', and 'c', model the situation in which the car is behind door named by the hypothesis.
     # For example, hypothesis 'a' means that car is *actually* behind door 'a'.
     #
