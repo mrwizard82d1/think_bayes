@@ -23,47 +23,35 @@ import think_bayes
 
 class TestDiachronic(unittest.TestCase):
 
-    def test_probability_bowl_1_given_vanilla(self):
-        priors = {'bowl_1': fractions.Fraction(1, 2),
-                  'bowl_2': fractions.Fraction(1, 2)}
-        likelihoods = {('vanilla', 'bowl_1'): fractions.Fraction(3, 4),
-                       ('vanilla', 'bowl_2'): fractions.Fraction(1, 2)}
+    priors = {'bowl_1': fractions.Fraction(1, 2),
+              'bowl_2': fractions.Fraction(1, 2)}
+    likelihoods = {('vanilla', 'bowl_1'): fractions.Fraction(3, 4),
+                   ('vanilla', 'bowl_2'): fractions.Fraction(1, 2),
+                   ('chocolate', 'bowl_1'): fractions.Fraction(1, 4),
+                   ('chocolate', 'bowl_2'): fractions.Fraction(1, 2)}
 
-        normalizing_factor = think_bayes.total_probability(['vanilla'], priors, likelihoods)
-        posteriors = think_bayes.diachronic('vanilla', priors, likelihoods, normalizing_factor)
+    def test_probability_bowl_1_given_vanilla(self):
+
+        normalizing_factor = think_bayes.total_probability('vanilla', self.priors, self.likelihoods)
+        posteriors = think_bayes.diachronic('vanilla', self.priors, self.likelihoods, normalizing_factor)
 
         self.assertEqual(posteriors['bowl_1'], fractions.Fraction(3, 5))
 
     def test_probability_bowl_2_given_vanilla(self):
-        priors = {'bowl_1': fractions.Fraction(1, 2),
-                  'bowl_2': fractions.Fraction(1, 2)}
-        likelihoods = {('vanilla', 'bowl_1'): fractions.Fraction(3, 4),
-                       ('vanilla', 'bowl_2'): fractions.Fraction(1, 2)}
-
-        normalizing_factor = think_bayes.total_probability(['vanilla'], priors, likelihoods)
-        posteriors = think_bayes.diachronic('vanilla', priors, likelihoods, normalizing_factor)
+        normalizing_factor = think_bayes.total_probability('vanilla', self.priors, self.likelihoods)
+        posteriors = think_bayes.diachronic('vanilla', self.priors, self.likelihoods, normalizing_factor)
 
         self.assertEqual(posteriors['bowl_2'], fractions.Fraction(2, 5))
 
     def test_probability_bowl_1_given_chocolate(self):
-        priors = {'bowl_1': fractions.Fraction(1, 2),
-                  'bowl_2': fractions.Fraction(1, 2)}
-        likelihoods = {('chocolate', 'bowl_1'): fractions.Fraction(1, 4),
-                       ('chocolate', 'bowl_2'): fractions.Fraction(1, 2)}
-
-        normalizing_factor = think_bayes.total_probability(['chocolate'], priors, likelihoods)
-        posteriors = think_bayes.diachronic('chocolate', priors, likelihoods, normalizing_factor)
+        normalizing_factor = think_bayes.total_probability('chocolate', self.priors, self.likelihoods)
+        posteriors = think_bayes.diachronic('chocolate', self.priors, self.likelihoods, normalizing_factor)
 
         self.assertEqual(posteriors['bowl_1'], fractions.Fraction(1, 3))
 
     def test_probability_bowl_2_given_chocolate(self):
-        priors = {'bowl_1': fractions.Fraction(1, 2),
-                  'bowl_2': fractions.Fraction(1, 2)}
-        likelihoods = {('chocolate', 'bowl_1'): fractions.Fraction(1, 4),
-                       ('chocolate', 'bowl_2'): fractions.Fraction(1, 2)}
-
-        normalizing_factor = think_bayes.total_probability(['chocolate'], priors, likelihoods)
-        posteriors = think_bayes.diachronic('chocolate', priors, likelihoods, normalizing_factor)
+        normalizing_factor = think_bayes.total_probability('chocolate', self.priors, self.likelihoods)
+        posteriors = think_bayes.diachronic('chocolate', self.priors, self.likelihoods, normalizing_factor)
 
         self.assertEqual(posteriors['bowl_2'], fractions.Fraction(2, 3))
 

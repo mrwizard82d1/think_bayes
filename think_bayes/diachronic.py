@@ -1,4 +1,4 @@
-def diachronic(data, priors, likelihoods, normalizing_factor):
+def diachronic(datum, priors, likelihoods, normalizing_factor):
     """Implement the diachronic interpretation of Bayes' law:
 
         P(H | D) = ( P(H) * P(D | H) ) / P(D)
@@ -16,8 +16,6 @@ def diachronic(data, priors, likelihoods, normalizing_factor):
         P(D) = P(H-sub-1) * P(D | H-sub-1) + P(H-sub-2) * P(D | H-sub-2) + ... + P(H-sub-n) * P(D | H-sub-n)
     """
 
-    posteriors = {}
-    for hypothesis in iter(priors):
-        posteriors[hypothesis] = (priors[hypothesis] * likelihoods[(data, hypothesis)]) / normalizing_factor;
+    posteriors = dict([(h, (priors[h] * likelihoods[(datum, h)]) / normalizing_factor) for h in iter(priors)])
 
     return posteriors
