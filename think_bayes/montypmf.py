@@ -1,4 +1,4 @@
-"""Defines the Monty class."""
+"""Defines the MontyPmf class."""
 
 
 import fractions
@@ -6,8 +6,8 @@ import fractions
 import think_bayes
 
 
-class Monty:
-    """Models a solution to the Monty Hall problem using a Pmf."""
+class MontyPmf:
+    """Models a solution to the MontyPmf Hall problem using a Pmf."""
     def __init__(self, hypotheses):
         self._pmf = think_bayes.Pmf()
         self._hypotheses = hypotheses
@@ -30,8 +30,6 @@ class Monty:
             return fractions.Fraction(1, 2)
         else:
             return 1
-
-
 
     def posterior(self):
         """Return the posterior distribution."""

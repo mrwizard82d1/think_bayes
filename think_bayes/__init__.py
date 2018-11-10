@@ -5,4 +5,4 @@ from think_bayes.diachronic import diachronic
 from think_bayes.table import Table
 from think_bayes.pmf import Pmf
 from think_bayes.cookie import Cookie
-from think_bayes.monty import Monty
+from think_bayes.montypmf import MontyPmf

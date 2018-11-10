@@ -1,4 +1,4 @@
-"""Define unit tests for the Monty Hall problem using Pmf."""
+"""Define unit tests for the MontyPmf Hall problem using Pmf."""
 
 
 import fractions
@@ -7,10 +7,10 @@ import unittest
 import think_bayes
 
 
-class TestMonty(unittest.TestCase):
+class TestMontyPmf(unittest.TestCase):
     def test_monty_hall_posterior(self):
         hypotheses = 'ABC'
-        sut = think_bayes.Monty(hypotheses)
+        sut = think_bayes.MontyPmf(hypotheses)
 
         data = 'B'
         sut.update(data)
