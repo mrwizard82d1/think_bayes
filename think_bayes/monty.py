@@ -1,4 +1,4 @@
-"""Defines the Cookie class."""
+"""Defines the Monty class."""
 
 
 import fractions
@@ -6,8 +6,8 @@ import fractions
 import think_bayes
 
 
-class Cookie:
-    """Solution to the cookie problem using a Pmf."""
+class Monty:
+    """Models a solution to the Monty Hall problem using a Pmf."""
     def __init__(self, hypotheses):
         self._pmf = think_bayes.Pmf()
         self._hypotheses = hypotheses
@@ -23,9 +23,15 @@ class Cookie:
 
         This method is **very** specific to the cookie problem.
         """
-        mixes = {'bowl 1': dict(vanilla=fractions.Fraction(3, 4), chocolate=fractions.Fraction(1, 4)),
-                 'bowl 2': dict(vanilla=fractions.Fraction(1, 2), chocolate=fractions.Fraction(1, 2))}
-        return mixes[hypothesis][data]
+
+        if hypothesis == data:
+            return 0
+        elif hypothesis == 'A':
+            return fractions.Fraction(1, 2)
+        else:
+            return 1
+
+
 
     def posterior(self):
         """Return the posterior distribution."""
