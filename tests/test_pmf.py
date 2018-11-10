@@ -71,3 +71,23 @@ class TestPmf(unittest.TestCase):
 
         self.assertEqual(1, sut.probability('iris'))
 
+    def test_masses(self):
+        sut = think_bayes.Pmf()
+        for ch in 'pellemus':
+            sut.increment(ch)
+
+        self.assertEqual({'p': 1, 'e': 2, 'l': 2, 'm': 1, 'u': 1, 's': 1}, sut.probabilities())
+
+    def test_probabilities(self):
+        sut = think_bayes.Pmf()
+        for ch in 'pellemus':
+            sut.increment(ch)
+        sut.normalize()
+
+        self.assertEqual({'p': fractions.Fraction(1, 8),
+                          'e': fractions.Fraction(1, 4),
+                          'l': fractions.Fraction(1, 4),
+                          'm': fractions.Fraction(1, 8),
+                          'u': fractions.Fraction(1, 8),
+                          's': fractions.Fraction(1, 8)}, sut.probabilities())
+
