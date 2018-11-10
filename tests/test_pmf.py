@@ -54,3 +54,20 @@ class TestPmf(unittest.TestCase):
 
         self.assertEqual(0.125, sut.probability('o'))
         self.assertEqual(0.625, sut.probability('t'))
+
+    def test_multiply_scales_probability_by_factor(self):
+        sut = think_bayes.Pmf()
+        sut.set('nepos', fractions.Fraction(5, 6))
+
+        sut.multiply('nepos', 3)
+
+        self.assertEqual(fractions.Fraction(5, 2), sut.probability('nepos'))
+
+    def test_multiply_scales_probability_by_float_factor(self):
+        sut = think_bayes.Pmf()
+        sut.set('iris', 4)
+
+        sut.multiply('iris', 0.25)
+
+        self.assertEqual(1, sut.probability('iris'))
+

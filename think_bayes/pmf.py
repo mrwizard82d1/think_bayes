@@ -19,6 +19,10 @@ class Pmf:
         """Increment the probability (or mass) of value by 1."""
         self._distribution[value] = self._distribution.get(value, 0) + 1
 
+    def multiply(self, value, factor):
+        """Multiply the mass of value by factor."""
+        self._distribution[value] *= factor
+
     def normalize(self):
         """Normalize the masses to probabilities."""
         normalizer = sum(self._distribution.values())
