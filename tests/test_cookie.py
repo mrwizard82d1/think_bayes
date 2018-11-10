@@ -37,3 +37,13 @@ class TestCookie(unittest.TestCase):
                           'bowl 2': fractions.Fraction(2, 3)},
                          sut.posterior())
 
+    def test_posterior_correct_after_seeing_many_updates(self):
+        sut = think_bayes.Cookie(['bowl 1', 'bowl 2'])
+
+        data_set = ['vanilla', 'chocolate', 'vanilla']
+        for data in data_set:
+            sut.update(data)
+
+        self.assertEqual({'bowl 1': fractions.Fraction(9, 17),
+                          'bowl 2': fractions.Fraction(8, 17)},
+                         sut.posterior())

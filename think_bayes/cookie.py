@@ -6,7 +6,7 @@ import fractions
 import think_bayes
 
 
-class Cookie():
+class Cookie:
     """Models a distribution for solving the cookie problem."""
     def __init__(self, hypotheses):
         self._pmf = think_bayes.Pmf()
@@ -23,8 +23,8 @@ class Cookie():
 
         This method is **very** specific to the cookie problem.
         """
-        mixes = {'bowl 1': dict(vanilla=30, chocolate=10),
-                 'bowl 2': dict(vanilla=20, chocolate=20)}
+        mixes = {'bowl 1': dict(vanilla=fractions.Fraction(3, 4), chocolate=fractions.Fraction(1, 4)),
+                 'bowl 2': dict(vanilla=fractions.Fraction(1, 2), chocolate=fractions.Fraction(1, 2))}
         return mixes[hypothesis][data]
 
     def posterior(self):
