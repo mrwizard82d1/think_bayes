@@ -1,4 +1,4 @@
-"""Defines a class for solving problems in Bayesian inforence."""
+"""Defines a class for solving problems in Bayesian inference."""
 
 
 import fractions
@@ -27,7 +27,7 @@ class Suite(think_bayes.Pmf):
         Child classes must implement this method.
         """
 
-        raise NotImplementedError();
+        raise NotImplementedError()
 
     def posterior(self):
         """Return the posterior distribution."""
