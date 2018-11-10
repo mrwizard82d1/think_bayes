@@ -15,7 +15,7 @@ class Suite(think_bayes.Pmf):
         :hypotheses: The exhaustive and exclusive hypotheses.
         :use_fractions: Set if we are using `fractions`. Defaults to `False`.
         """
-        think_bayes.Pmf.__init__(self)
+        super().__init__()
         self._hypotheses = hypotheses
         self._use_fractions = use_fractions
         for hypothesis in hypotheses:

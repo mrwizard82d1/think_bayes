@@ -9,7 +9,7 @@ import think_bayes
 
 class SuiteToTest(think_bayes.Suite):
     def __init__(self, hypotheses):
-        think_bayes.Suite.__init__(self, hypotheses, use_fractions=True)
+        super().__init__(hypotheses, use_fractions=True)
 
     def likelihood(self, data, hypothesis):
         mixes = {'b1': dict(v=30, c=10), 'b2': dict(v=20, c=20)}
