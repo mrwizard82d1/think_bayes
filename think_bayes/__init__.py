@@ -6,3 +6,4 @@ from think_bayes.table import Table
 from think_bayes.pmf import Pmf
 from think_bayes.cookie import Cookie
 from think_bayes.montypmf import MontyPmf
+from think_bayes.suite import Suite
