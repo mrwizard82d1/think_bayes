@@ -35,15 +35,16 @@ class TestCookieEating(unittest.TestCase):
         hypotheses = ['bowl 1', 'bowl 2']
         sut = think_bayes.CookieEating(hypotheses)
 
-        sut.eat_cookie(('vanilla', 'bowl 1'))
+        sut.eat_cookie('vanilla', 'bowl 1')
 
         actual = sut.likelihood('vanilla', 'bowl 1')
+        self.assertEqual(actual, fractions.Fraction(29, 39))
 
     def test_likelihood_after_eating_chocolate_bowl2(self):
         hypotheses = ['bowl 1', 'bowl 2']
         sut = think_bayes.CookieEating(hypotheses)
 
-        sut.eat_cookie(('chocolate', 'bowl 2'))
+        sut.eat_cookie('chocolate', 'bowl 2')
 
         actual = sut.likelihood('chocolate', 'bowl 2')
         self.assertEqual(actual, fractions.Fraction(19, 39))
@@ -52,7 +53,8 @@ class TestCookieEating(unittest.TestCase):
         hypotheses = ['bowl 1', 'bowl 2']
         sut = think_bayes.CookieEating(hypotheses)
 
-        sut.update(('vanilla', 'bowl 1'))
+        sut.update('vanilla')
+        sut.eat_cookie('vanilla', 'bowl 1')
 
         self.assertEqual({'bowl 1': fractions.Fraction(3, 5),
                           'bowl 2': fractions.Fraction(2, 5)},
@@ -62,8 +64,9 @@ class TestCookieEating(unittest.TestCase):
         hypotheses = ['bowl 1', 'bowl 2']
         sut = think_bayes.CookieEating(hypotheses)
 
-        sut.update(('vanilla', 'bowl 1'))
-        sut.update(('chocolate', 'bowl 2'))
+        sut.update('vanilla')
+        sut.eat_cookie('vanilla', 'bowl 1')
+        sut.update('chocolate')
 
         self.assertEqual({'bowl 1': fractions.Fraction(10, 23),
                           'bowl 2': fractions.Fraction(13, 23)},
@@ -73,9 +76,11 @@ class TestCookieEating(unittest.TestCase):
         hypotheses = ['bowl 1', 'bowl 2']
         sut = think_bayes.CookieEating(hypotheses)
 
-        sut.update(('vanilla', 'bowl 1'))
-        sut.update(('chocolate', 'bowl 2'))
-        sut.update(('vanilla', 'bowl 1'))
+        sut.update('vanilla')
+        sut.eat_cookie('vanilla', 'bowl 1')
+        sut.update('chocolate')
+        sut.eat_cookie('chocolate', 'bowl 2')
+        sut.update('vanilla')
 
         self.assertEqual({'bowl 1': fractions.Fraction(29, 55),
                           'bowl 2': fractions.Fraction(26,55)},
