@@ -23,6 +23,10 @@ class Pmf:
         """Increment the probability (or mass) of value by 1."""
         self._distribution[value] = self._distribution.get(value, 0) + 1
 
+    def mean(self):
+        """Calculate the weighted mean of all values."""
+        return sum([p * v for p, v in self._distribution.items()])
+
     def multiply(self, value, factor):
         """Multiply the mass of value by factor."""
         self._distribution[value] *= factor

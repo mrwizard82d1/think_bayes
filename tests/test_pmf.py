@@ -91,3 +91,11 @@ class TestPmf(unittest.TestCase):
                           'u': fractions.Fraction(1, 8),
                           's': fractions.Fraction(1, 8)}, sut.probabilities())
 
+    def test_mean_of_uniform(self):
+        sut = think_bayes.Pmf()
+        for i in range(5):
+            sut.increment(i)
+        sut.normalize()
+
+        self.assertEqual(2, sut.mean())
+

@@ -11,3 +11,4 @@ from think_bayes.monty import Monty
 from think_bayes.m_and_m import MAndM
 from think_bayes.cookie_eating import CookieEating
 from think_bayes.dice import Dice
+from think_bayes.locomotive import LocomotiveUniform
