@@ -1,8 +1,6 @@
 """Defines models of the locomotive problem."""
 
 
-import fractions
-
 import think_bayes
 
 
@@ -14,4 +12,4 @@ class LocomotiveUniform(think_bayes.Suite):
         if hypothesis < data:
             return 0
         else:
-            return fractions.Fraction(1, hypothesis)
+            return 1.0 / hypothesis
