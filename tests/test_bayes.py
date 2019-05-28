@@ -34,6 +34,12 @@ class TestBayes(unittest.TestCase):
         self.assertEqual(think_bayes.diachronic(self.prob_bowl_2, self.prob_vanilla_bowl_2,
                                                 self.prob_vanilla_either_bowl), fractions.Fraction(2, 5))
 
+    def test_m_and_m_table(self):
+        sut = think_bayes.Table(['A', 'B'], {'A': fractions.Fraction(1, 2), 'B': fractions.Fraction(1, 2)},
+                                {'A': 20 * 20, 'B': 10 * 14})
+        self.assertEqual(sut.posterior('A'), fractions.Fraction(20, 27))
+        self.assertEqual(sut.posterior('B'), fractions.Fraction(7, 27))
+
 
 if __name__ == '__main__':
     unittest.main()

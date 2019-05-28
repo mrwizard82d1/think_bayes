@@ -1,1 +1,1 @@
-from .core import (bayes_equation, diachronic)
+from .core import (bayes_equation, diachronic, Table)
