@@ -1,1 +1,1 @@
-from .core import bayes_equation
+from .core import (bayes_equation, diachronic)

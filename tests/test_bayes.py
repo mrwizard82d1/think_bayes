@@ -26,6 +26,14 @@ class TestBayes(unittest.TestCase):
         self.assertEqual(think_bayes.bayes_equation(self.prob_bowl_2, self.prob_vanilla_bowl_2,
                                                     self.prob_vanilla_either_bowl), fractions.Fraction(2, 5))
 
+    def test_diachronic_vanilla_bowl_1(self):
+        self.assertEqual(think_bayes.diachronic(self.prob_bowl_1, self.prob_vanilla_bowl_1,
+                                                self.prob_vanilla_either_bowl), fractions.Fraction(3, 5))
+
+    def test_diachronic_vanilla_bowl_2(self):
+        self.assertEqual(think_bayes.diachronic(self.prob_bowl_2, self.prob_vanilla_bowl_2,
+                                                self.prob_vanilla_either_bowl), fractions.Fraction(2, 5))
+
 
 if __name__ == '__main__':
     unittest.main()
