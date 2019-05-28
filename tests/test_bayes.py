@@ -40,6 +40,14 @@ class TestBayes(unittest.TestCase):
         self.assertEqual(sut.posterior('A'), fractions.Fraction(20, 27))
         self.assertEqual(sut.posterior('B'), fractions.Fraction(7, 27))
 
+    def test_monty_python_table(self):
+        sut = think_bayes.Table('ABC', {'A': fractions.Fraction(1, 3), 'B': fractions.Fraction(1, 3),
+                                        'C': fractions.Fraction(1, 3)},
+                                {'A': fractions.Fraction(1, 2), 'B': 0, 'C': 1})
+        self.assertEqual(sut.posterior('A'), fractions.Fraction(1, 3))
+        self.assertEqual(sut.posterior('B'), 0)
+        self.assertEqual(sut.posterior('C'), fractions.Fraction(2, 3))
+
 
 if __name__ == '__main__':
     unittest.main()
