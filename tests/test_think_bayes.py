@@ -5,11 +5,32 @@ import think_bayes
 
 
 class TestPmf(unittest.TestCase):
+    """Defines the unit tests for the Pmf class."""
+
     def test_set(self):
+        """Verify Pmf.set()"""
         pmf = think_bayes.Pmf()
         for value in range(6):
             pmf.set(value, fractions.Fraction(1, 6))
             self.assertEqual(fractions.Fraction(1, 6), pmf.probability(value))
+
+    def test_increment(self):
+        """Verify Pmf.increment()"""
+        pmf = think_bayes.Pmf()
+        raw_words = ("Four score and seven years ago, our forefathers set forth on this continent a new nation, "
+                     "conceived in liberty, and dedicated to the proposition that all men are created equal.").split()
+        words = [w.strip(',.') for w in raw_words]
+
+        for value in words:
+            pmf.increment(value)
+        expected = {
+            'Four': 1,
+            'our': 1,
+            'and': 2,
+            'the': 1
+        }
+        for v, p in expected.items():
+            self.assertEqual(expected[v], pmf.probability(v))
 
 
 if __name__ == '__main__':
