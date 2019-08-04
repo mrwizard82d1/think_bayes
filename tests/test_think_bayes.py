@@ -32,6 +32,22 @@ class TestPmf(unittest.TestCase):
         for v, p in expected.items():
             self.assertEqual(expected[v], pmf.probability(v))
 
+    def test_normalize(self):
+        """Verify Pmf.normalize()"""
+
+        pmf = think_bayes.Pmf()
+        for x in range(6):
+            pmf.set(x, x)
+        pmf.normalize()
+        expected = {0: 0,
+                    1: fractions.Fraction(1, 15),
+                    2: fractions.Fraction(2, 15),
+                    3: fractions.Fraction(1, 5),
+                    4: fractions.Fraction(4, 15),
+                    5: fractions.Fraction(1, 3)}
+        for v, p in expected.items():
+            self.assertEqual(expected[v], pmf.probability(v))
+
 
 if __name__ == '__main__':
     unittest.main()
