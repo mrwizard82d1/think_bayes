@@ -48,6 +48,17 @@ class TestPmf(unittest.TestCase):
         for v, p in expected.items():
             self.assertEqual(expected[v], pmf.probability(v))
 
+    def test_multiply(self):
+        """Verify Pmf.multiply()"""
+        pmf = think_bayes.Pmf()
+        for x in range(1, 6):
+            pmf.set(x, 1)
+
+        for x in range(1, 6):
+            pmf.multiply(x, fractions.Fraction(1, x))
+
+        for x in range(1, 6):
+            self.assertEqual(fractions.Fraction(1, x), pmf.probability(x))
 
 if __name__ == '__main__':
     unittest.main()

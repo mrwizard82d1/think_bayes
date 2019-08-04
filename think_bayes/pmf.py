@@ -21,6 +21,10 @@ class Pmf:
         """Increments the probability mass for value by_amount."""
         self._map[value] = self._map.get(value, 0) + by_amount
 
+    def multiply(self, value, by_amount):
+        """Multiply the probability mass of value by_amount."""
+        self._map[value] = self._map.get(value, 0) * by_amount
+
     def normalize(self):
         """Convert all my masses to probabilities."""
         self._map = {v: fractions.Fraction(m, sum(self._map.values())) for v, m in self._map.items()}
