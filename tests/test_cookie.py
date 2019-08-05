@@ -44,6 +44,19 @@ class TestCookie(unittest.TestCase):
         self.assertEqual(fractions.Fraction(3, 5), cookie.probability('bowl 1'))
         self.assertEqual(fractions.Fraction(2, 5), cookie.probability('bowl 2'))
 
+    def test_cookie_pmf_multiple_updates(self):
+        """Verify the probability of drawing a vanilla cookie from bowl 1."""
+        cookie = think_bayes.Cookie(['bowl 1', 'bowl 2'])
+
+        # Update the Cookie based on the `Likelihood` function
+        data_set = ['vanilla', 'chocolate', 'vanilla']
+        for data in data_set:
+            cookie.update(data)
+
+        # Assert the posterior probabilities are correct
+        self.assertEqual(fractions.Fraction(9, 17), cookie.probability('bowl 1'))
+        self.assertEqual(fractions.Fraction(8, 17), cookie.probability('bowl 2'))
+
 
 if __name__ == '__main__':
     unittest.main()
